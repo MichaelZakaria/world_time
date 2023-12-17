@@ -1,6 +1,6 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
+import 'package:world_time/services/world_time.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -45,7 +45,8 @@ class _HomeState extends State<Home> {
                               'time': result['time'],
                               'location': result['location'],
                               'isDayTime': result['isDayTime'],
-                              'flag': result['flag']
+                              'flag': result['flag'],
+                              'url': result['url']
                             };
                           });
                           },
@@ -72,13 +73,32 @@ class _HomeState extends State<Home> {
                             ),
                           ),
                           SizedBox(height: 8),
-                          Text(
-                            data['time'],
-                            style: TextStyle(
-                              fontSize: 60,
-                              fontWeight: FontWeight.w600,
-                              letterSpacing: 2,
-                            ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SizedBox(width: 32.0),
+                              Text(
+                                data['time'],
+                                style: TextStyle(
+                                  fontSize: 60,
+                                  fontWeight: FontWeight.w600,
+                                  letterSpacing: 2,
+                                ),
+                              ),
+                              IconButton(onPressed: () async {
+                                WorldTime instance = WorldTime(location: data['location'], flag: data['flag'], url: data['url']);
+                                await instance.getTime();
+                                setState(() {
+                                  data = {
+                                    'time': instance.time,
+                                    'location': instance.location,
+                                    'isDayTime': instance.isDayTime,
+                                    'flag': instance.flag,
+                                    'url': instance.url
+                                  };
+                                });
+                              }, icon: Icon(Icons.refresh),),
+                            ],
                           ),
                         ],
                       ),
