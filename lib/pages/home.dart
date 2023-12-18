@@ -20,6 +20,22 @@ class _HomeState extends State<Home> {
 
     String bgImage = data['isDayTime'] ? 'day.PNG' : 'night.PNG';
 
+    //track time
+
+    Future.delayed(Duration(seconds: 60), () async {
+      WorldTime instance = WorldTime(location: data['location'], flag: data['flag'], url: data['url']);
+      await instance.getTime();
+      setState(() {
+        data = {
+          'time': instance.time,
+          'location': instance.location,
+          'isDayTime': instance.isDayTime,
+          'flag': instance.flag,
+          'url': instance.url
+        };
+      });
+      });
+
     return Scaffold(
       body: SafeArea(
           child:

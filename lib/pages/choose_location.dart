@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:world_time/services/world_time.dart';
+import '../services/search.dart';
+import '../services/locations.dart';
+
 
 class ChooseLocation extends StatefulWidget {
   const ChooseLocation({super.key});
@@ -9,17 +12,6 @@ class ChooseLocation extends StatefulWidget {
 }
 
 class _ChooseLocationState extends State<ChooseLocation> {
-
-  List<WorldTime> locations = [
-    WorldTime(url: 'Europe/London', location: 'London', flag: 'uk.png'),
-    WorldTime(url: 'Europe/Berlin', location: 'Athens', flag: 'greece.png'),
-    WorldTime(url: 'Africa/Cairo', location: 'Cairo', flag: 'egypt.png'),
-    WorldTime(url: 'Africa/Nairobi', location: 'Nairobi', flag: 'kenya.png'),
-    WorldTime(url: 'America/Chicago', location: 'Chicago', flag: 'usa.png'),
-    WorldTime(url: 'America/New_York', location: 'New York', flag: 'usa.png'),
-    WorldTime(url: 'Asia/Seoul', location: 'Seoul', flag: 'south_korea.png'),
-    WorldTime(url: 'Asia/Jakarta', location: 'Jakarta', flag: 'indonesia.png'),
-  ];
 
   void updateTime(index) async{
     WorldTime instance = locations[index];
@@ -31,6 +23,7 @@ class _ChooseLocationState extends State<ChooseLocation> {
       'isDayTime': instance.isDayTime,
       'url': instance.url,
     });
+
   }
 
   @override
@@ -45,6 +38,23 @@ class _ChooseLocationState extends State<ChooseLocation> {
             color: Colors.white,
           ),
         ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(0,0,5,0),
+            child: IconButton(
+                onPressed: () {
+                  showSearch(context: context,
+                      delegate: CustomSearchDelegate(),);
+                },
+                icon: Icon(
+                    Icons.search
+                ),
+              style: ButtonStyle(
+                backgroundColor: MaterialStatePropertyAll(Colors.white),
+              ),
+            ),
+          ),
+        ],
         centerTitle: true,
         elevation: 0,
       ),
@@ -70,3 +80,5 @@ class _ChooseLocationState extends State<ChooseLocation> {
     );
   }
 }
+
+
