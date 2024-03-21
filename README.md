@@ -3,7 +3,9 @@
 
 - Home :<br>
 <p align="center">
-  <img src="https://github.com/MichaelZakaria/world_time/assets/65913937/e0b19ee1-a0f7-426c-9fa6-86c1632d0a60" width="400" height="800"/>
+  <img src="https://github.com/MichaelZakaria/world_time/assets/65913937/11d46c41-e26b-42f8-956c-59954ddc3f45" width="400" height="800"/>
+
+ <img src="https://github.com/MichaelZakaria/world_time/assets/65913937/a58ad70c-36f9-45ac-b999-7851762f19a2" width="400" height="800"/>
 </p>
 
 <br>
